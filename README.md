@@ -1,4 +1,41 @@
-# StagedhomesSubscription
+# StagedHomes Membership Subscription
+
+Auto Renewal Subscriptions for Staged Homes
+
+---
+
+# Angluar CLI info at the time of creating this project
+
+```
+     _                      _                 ____ _     ___
+    / \   _ __   __ _ _   _| | __ _ _ __     / ___| |   |_ _|
+   / △ \ | '_ \ / _` | | | | |/ _` | '__|   | |   | |    | |
+  / ___ \| | | | (_| | |_| | | (_| | |      | |___| |___ | |
+ /_/   \_\_| |_|\__, |\__,_|_|\__,_|_|       \____|_____|___|
+                |___/
+
+
+Angular CLI: 12.2.9
+Node: 14.16.1
+Package Manager: npm 6.14.12
+OS: linux x64
+
+Angular:
+...
+
+Package                      Version
+------------------------------------------------------
+@angular-devkit/architect    0.1202.9 (cli-only)
+@angular-devkit/core         12.2.9 (cli-only)
+@angular-devkit/schematics   12.2.9 (cli-only)
+@schematics/angular          12.2.9 (cli-only)
+
+```
+
+
+
+---
+# Stock Angular CLI Readme contents
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 12.2.9.
 
