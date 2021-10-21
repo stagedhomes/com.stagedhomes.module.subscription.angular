@@ -29,16 +29,11 @@
               <div class="separator-2"></div>
               <nav>
                 <ul class="nav nav-pills nav-stacked">
-                  <li><a href="https://pages.stagedhomes.com/stagedhomes-courses-overview/"><i class="fa fa-external-link-square space-3"></i> Oct 19: Region 3 Virtual ASP-RE, ASA, &amp; ASP Course , USA</a></li>
-                  <li><a href="https://pages.stagedhomes.com/stagedhomes-courses-overview/"><i class="fa fa-external-link-square space-3"></i> Oct 26: COMBO (MT TIME ZONE) Region 1 &amp; 2 Virtual A, USA</a></li>
-                  <li><a href="https://pages.stagedhomes.com/stagedhomes-courses-overview/"><i class="fa fa-external-link-square space-3"></i> Oct 26: ASP Master Stager Course- Dallas, TX, USA</a></li>
-                  <li><a href="https://pages.stagedhomes.com/stagedhomes-courses-overview/"><i class="fa fa-external-link-square space-3"></i> Nov 06: Nashville IN PERSON ASP-RE, ASA, &amp; ASP Course, TN</a></li>
-                  <li><a href="https://pages.stagedhomes.com/stagedhomes-courses-overview/"><i class="fa fa-external-link-square space-3"></i> Nov 09: Region 3 Virtual ASP-RE, ASA, &amp; ASP Cours, USA</a></li>
-                  <li><a href="https://pages.stagedhomes.com/stagedhomes-courses-overview/"><i class="fa fa-external-link-square space-3"></i> Nov 09: Region 2 Virtual ASP-RE, ASA, &amp; ASP Course, USA</a></li>
-                  <li><a href="https://pages.stagedhomes.com/stagedhomes-courses-overview/"><i class="fa fa-external-link-square space-3"></i> Nov 30: COMBO (MT TIME ZONE) Region 1 &amp; 2 Virtual ASP, USA</a></li>
-                  <li><a href="https://pages.stagedhomes.com/stagedhomes-courses-overview/"><i class="fa fa-external-link-square space-3"></i> Dec 07: Region 3 Virtual ASP-RE, ASA, &amp; ASP Course, USA</a></li>
-                  <li><a href="https://pages.stagedhomes.com/stagedhomes-courses-overview/"><i class="fa fa-external-link-square space-3"></i> Dec 14: COMBO (MT TIME ZONE) Region 1 &amp; 2 Virtual ASP, USA</a></li>
-                  <li><a href="https://pages.stagedhomes.com/stagedhomes-courses-overview/"><i class="fa fa-external-link-square space-3"></i> Dec 31: Go at your own pace - RECORDED WEBINAR , WORLDWIDE</a></li>
+                  <li *ngFor="let courseEntry of coursesHolder; let i = index">
+                    <a href="https://pages.stagedhomes.com/stagedhomes-courses-overview/">
+                      <i class="fa fa-external-link-square space-3"></i> {{ mainService.formatDate(courseEntry['date']) }}: {{ courseEntry['city'] }}, {{ courseEntry['state'] }}
+                    </a>
+                  </li>
                 </ul>
               </nav>
               <div class="text-left space-top">

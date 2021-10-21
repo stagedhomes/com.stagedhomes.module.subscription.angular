@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { MainService } from "../../../services/main.service";
+import { Observable, throwError } from 'rxjs';
+import { catchError, retry } from 'rxjs/operators';
 
 @Component({
   selector: 'app-footer',
@@ -7,9 +10,19 @@ import { Component, OnInit } from '@angular/core';
 })
 export class FooterComponent implements OnInit {
 
-  constructor() { }
+  public coursesHolder = [];
+  public newsHolder = [];
+
+  constructor(public mainService: MainService) {
+  }
 
   ngOnInit(): void {
+    this.mainService.getFooterFeed()
+    .then( (data: any) => {
+      this.coursesHolder = data['courses'];
+      this.newsHolder = data['news'];
+      console.log(this.newsHolder);
+    });
   }
 
 }
