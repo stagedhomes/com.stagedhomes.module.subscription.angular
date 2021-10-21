@@ -31,6 +31,9 @@ export class MainService {
     return await this.http.get<any>(this.footerBlogURL).toPromise();
   }
 
+  public formatDecodeHTML(theString: string) {
+    return new DOMParser().parseFromString(theString, "text/html").documentElement.textContent;
+  }
   public formatDate(theDate: string) {
     // Note:
     // I opted to do the date formatting manually, because when

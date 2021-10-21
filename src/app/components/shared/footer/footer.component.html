@@ -49,32 +49,12 @@
 
               <nav>
                 <ul class="nav nav-pills nav-stacked">
-                  <li id="blog-posts-container"><a href="https://pages.stagedhomes.com/autumn-market-trends-home-sellers-should-watch/" target="_blank" rel="noopener"><div class="padding-right-22">Autumn Market Trends Home Sellers Should Watch</div><div><small>2021-10-11T15:20:17</small></div></a><a href="https://pages.stagedhomes.com/how-you-can-lavish-up-your-garage/" target="_blank" rel="noopener"><div class="padding-right-22">How You Can Lavish Up Your Garage</div><div><small>2021-10-10T10:00:00</small></div></a><a href="https://pages.stagedhomes.com/how-to-make-a-prospective-buyer-love-your-home-the-moment-they-walk-in/" target="_blank" rel="noopener"><div class="padding-right-22">How To Make A Prospective Buyer Love Your Home The Moment They Walk In</div><div><small>2021-10-09T13:39:00</small></div></a><a href="https://pages.stagedhomes.com/dont-have-a-green-thumb-dont-worry-these-low-maintenance-plants-will-stay-green-with-even-the-tiniest-bit-of-tlc/" target="_blank" rel="noopener"><div class="padding-right-22">Don’t have a green thumb? Don’t worry! These low-maintenance plants will stay green with even the tiniest bit of TLC.</div><div><small>2021-10-08T17:48:00</small></div></a><a href="https://pages.stagedhomes.com/financing-tips-for-first-time-home-buyers/" target="_blank" rel="noopener"><div class="padding-right-22">Financing Tips for First-Time Home Buyers</div><div><small>2021-10-08T13:33:00</small></div></a></li>
-                  <script type="text/javascript">
-                    var blogPostsContainer = document.getElementById("blog-posts-container");
-                    var request = new XMLHttpRequest();    
-                    request.open('GET', 'https://pages.stagedhomes.com/wp-json/wp/v2/posts?per_page=5&orderby=date');
-
-                    request.onload = function() {
-                      var data = JSON.parse(request.responseText);
-                      createHTML(data);
-                    };
-
-                    request.send();
-
-                    function createHTML(postsData) {
-                      var string = '';
-
-                      for (i=0; i<postsData.length; i++) {                                                
-                        string +=   '<a href="https://pages.stagedhomes.com/' + postsData[i].slug + '/" target="_blank" rel="noopener">';
-                        string +=       '<div class="padding-right-22">' + postsData[i].title.rendered + '</div>';
-                        string +=       '<div><small>' + postsData[i].date + '</small></div>';
-                        string +=   '</a>';
-                      }
-
-                      blogPostsContainer.innerHTML = string;
-                    }
-                  </script>
+                  <li id="blog-posts-container">
+                    <a *ngFor="let newsEntry of newsHolder; let i = index" href="https://pages.stagedhomes.com/{{newsEntry['slug']}}/" target="_blank" rel="noopener">
+                      <div class="padding-right-22">{{ mainService.formatDecodeHTML(newsEntry['title']['rendered']) }}</div>
+                      <div><small>{{ newsEntry['date'] }}</small></div>
+                    </a>
+                  </li>
                 </ul>
               </nav>
 

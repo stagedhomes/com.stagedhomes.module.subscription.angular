@@ -20,7 +20,13 @@ export class FooterComponent implements OnInit {
     this.mainService.getFooterFeed()
     .then( (data: any) => {
       this.coursesHolder = data['courses'];
-      this.newsHolder = data['news'];
+      //this.newsHolder = data['news'];
+      //console.log(this.newsHolder);
+    });
+    this.mainService.getFooterBlog()
+    .then( (data: any) => {
+      this.newsHolder = data;
+      //this.newsHolder = data['news'];
       console.log(this.newsHolder);
     });
   }
