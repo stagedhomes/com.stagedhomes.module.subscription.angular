@@ -1,7 +1,124 @@
 <div class="container">
-  <div class="row">
-    <div class="col-sm-12">
-      <p>home works!</p>
-    </div>
-  </div>
-</div>
+  <header class="text-center">
+    <div class="row">
+      <div class="col-sm-12">
+        <div class="text-center">
+          <h1>Auto Membership Renewal</h1>
+          <h2 class="text-danger">
+            ASP®, ASP-RE®, ASPM®, and ASA® RENEWALS - your IAHSP® Membership is INCLUDED in your renewal!
+          </h2>
+          <p>
+            <span class="text-danger">Lifetime Memberships are Available!</span><br/>
+            Call StagedHomes.com at 1-800-392-7161
+          </p>
+        </div>
+      </div>
+    </div><!-- /row -->
+  </header>
+
+  <form>
+    <div class="row">
+      <div class="col-sm-6">
+        <div class="form-group">
+          <h3>Payment Information</h3>
+          <div class="fields-holder">
+            <div class="row">
+              <div class="col-xs-12">
+                <label for="frmCreditCard">Card Number</label>
+                <input type="text" class="form-control" id="frmCreditCard" placeholder="">
+              </div>
+            </div> <!-- /row -->
+            <div class="row">
+              <div class="col-xs-4">
+                <label for="frmCardExpMonth">Expiration Month</label>
+                <input type="text" class="form-control" id="frmCardExpMonth" placeholder="">
+              </div>
+              <div class="col-xs-4">
+                <label for="frmCardExpDay">Expiration Day</label>
+                <input type="text" class="form-control" id="frmCardExpDay" placeholder="">
+              </div>
+              <div class="col-xs-4">
+                <label for="frmCardCVV">CVV</label>
+                <input type="text" class="form-control" id="frmCardCVV" placeholder="">
+              </div>
+            </div> <!-- /row -->
+          </div>
+        </div>
+        <div class="form-group">
+          <h3>Billing Information</h3>
+          <div class="fields-holder">
+            <div class="row">
+              <div class="col-xs-6">
+                <label for="frmFirstName">First Name</label>
+                <input type="text" class="form-control" id="frmFirstName" placeholder="">
+              </div>
+              <div class="col-xs-6">
+                <label for="frmLastName">Last Name</label>
+                <input type="text" class="form-control" id="frmLastName" placeholder="">
+              </div>
+            </div> <!-- /row -->
+            <div class="row">
+              <div class="col-xs-12">
+                <label for="frmAddress">Address</label>
+                <input type="text" class="form-control" id="frmAddress" placeholder="">
+              </div>
+            </div> <!-- /row -->
+            <div class="row">
+              <div class="col-xs-5">
+                <label for="frmCity">City</label>
+                <input type="text" class="form-control" id="frmCity" placeholder="">
+              </div>
+              <div class="col-xs-3">
+                <label for="frmState">State</label>
+                <input type="text" class="form-control" id="frmState" placeholder="">
+              </div>
+              <div class="col-xs-4">
+                <label for="frmZip">Zip</label>
+                <input type="text" class="form-control" id="frmZip" placeholder="">
+              </div>
+            </div> <!-- /row -->
+            <div class="row">
+              <div class="col-xs-6">
+                <label for="frmCountry">Country</label>
+                <input type="text" class="form-control" id="frmCountry" placeholder="">
+              </div>
+              <div class="col-xs-6">
+                <label for="frmEmail">Email Address</label>
+                <input type="text" class="form-control" id="frmEmail" placeholder="">
+              </div>
+            </div> <!-- /row -->
+          </div>
+        </div>
+      </div>
+      <div class="col-sm-6">
+        <div class="form-group">
+          <h3>Select Duration</h3>
+          <div class="fields-holder">
+            <div class="row">
+              <div class="col-xs-12">
+                <div class="radio">
+                  <label><input type="radio" id="duration-6m" name="customRadio" class="custom-control-input"> 6 Months - $140.00 Stager ASP&reg; 6 Month Membership</label>
+                </div>
+                <div class="radio">
+                  <label><input type="radio" id="duration-12m" name="customRadio" class="custom-control-input"> 1 Year - $280 Stager ASP&reg; 1 Year Membership</label>
+                </div>
+                <div class="radio">
+                  <label><input type="radio" id="duration-24m" name="customRadio" class="custom-control-input"> 2 Years - $448 Stager ASP&reg; 2 Years Membership</label>
+                </div>
+                <div class="radio">
+                  <label><input type="radio" id="duration-inf" name="customRadio" class="custom-control-input"> Lifetime - $2295.95 Stager ASP&reg; Lifetime Membership</label>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="form-group form-footer">
+          <div class="captcha-holder">
+            captcha goes here
+          </div>
+          <button class="btn btn-default" type="button">Confirm</button>
+        </div>
+      </div>
+    </div> <!-- /row -->
+  </form>
+</div><!-- /container -->
