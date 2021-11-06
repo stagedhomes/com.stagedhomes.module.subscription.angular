@@ -16,7 +16,7 @@
     </div><!-- /row -->
   </header>
 
-  <form>
+  <form [formGroup]="myForm">
     <div class="row">
       <div class="col-sm-6">
         <div class="form-group">
@@ -25,21 +25,23 @@
             <div class="row">
               <div class="col-xs-12">
                 <label for="frmCreditCard">Card Number</label>
-                <input type="text" class="form-control" id="frmCreditCard" placeholder="">
+                <input type="text" class="form-control" id="frmCreditCard" placeholder="" formControlName="frmCreditCard" required>
+                <div class="info">
+                </div>
               </div>
             </div> <!-- /row -->
             <div class="row">
               <div class="col-xs-4">
                 <label for="frmCardExpMonth">Expiration Month</label>
-                <input type="text" class="form-control" id="frmCardExpMonth" placeholder="">
+                <input type="text" class="form-control" id="frmCardExpMonth" placeholder="" required>
               </div>
               <div class="col-xs-4">
                 <label for="frmCardExpDay">Expiration Day</label>
-                <input type="text" class="form-control" id="frmCardExpDay" placeholder="">
+                <input type="text" class="form-control" id="frmCardExpDay" placeholder="" required>
               </div>
               <div class="col-xs-4">
                 <label for="frmCardCVV">CVV</label>
-                <input type="text" class="form-control" id="frmCardCVV" placeholder="">
+                <input type="text" class="form-control" id="frmCardCVV" placeholder="" formControlName="frmCardCVV" required>
               </div>
             </div> <!-- /row -->
           </div>
@@ -114,9 +116,13 @@
         </div>
         <div class="form-group form-footer">
           <div class="captcha-holder">
-            captcha goes here
+            <re-captcha 
+              (captchaResponse)="handleCaptchaResponse($event)" 
+              (captchaExpired)="handleCaptchaExpired()"
+              site_key="xxx"
+              ></re-captcha>
           </div>
-          <button class="btn btn-default" type="button">Confirm</button>
+          <button class="btn btn-default" type="button" [disabled]="!myForm.valid">Confirm</button>
         </div>
       </div>
     </div> <!-- /row -->
