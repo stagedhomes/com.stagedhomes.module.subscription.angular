@@ -37,4 +37,13 @@ export class HomeComponent implements OnInit {
     console.log('captcha expired');
   }
 
+  handleSendToParent(message: string): void {
+    console.log('angular: handleSendToParent has been succesfully called');
+    window.parent.postMessage({
+      'deliverer': 'ng',
+      'func': 'callFromIframe',
+      'message': message
+    }, "*");
+  }
+
 }
