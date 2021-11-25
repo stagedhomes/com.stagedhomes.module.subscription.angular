@@ -24,6 +24,14 @@ export class MainService {
 
   } // /constructor
 
+  public subscribeUser() {
+    return {
+      success: false,
+      message: 'this represents a failure message returned from nodejs'
+    };
+  }
+
+
   public async getFooterFeed() {
     return await this.http.get<any>(this.footerFeedURL).toPromise();
   }
