@@ -29,21 +29,9 @@ export class MainService {
 
   } // /constructor
 
-  public subscribeUser(fields: any) {
-    const payload = {
-      subType: 'asp',
-      expirationDate: '',
-      cardNumber: fields.frmCreditCard,
-      email: fields.frmEmail,
-      firstName: fields.frmFirstName,
-      lastName: fields.frmLastName,
-      address: fields.frmAddress,
-      city: fields.frmCity,
-      state: fields.frmState,
-      zip: fields.frmZip,
-      country: fields.frmCountry
-    };
-    console.log(payload);
+  public subscribeUser(formData: any) {
+    // formData is a formdata object, so we can send that directly to the nodejs
+    console.log(...formData);
     return {
       success: false,
       message: 'this represents a failure message returned from nodejs'

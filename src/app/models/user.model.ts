@@ -5,7 +5,7 @@ export class User {
 
   frmCreditCard: string;
   frmCardCVV: string
-  frmCardExpDay: string;
+  frmCardExpYear: string;
   frmCardExpMonth: string;
   frmAddress: string;
   frmCity: string;
@@ -24,7 +24,7 @@ export class User {
 
     this.frmCreditCard = '';
     this.frmCardCVV = '';
-    this.frmCardExpDay = '';
+    this.frmCardExpYear = '';
     this.frmCardExpMonth = '';
     this.frmAddress = '';
     this.frmCity = '';

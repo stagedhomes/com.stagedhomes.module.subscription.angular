@@ -1,5 +1,5 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from "@angular/forms";
+import { FormBuilder, FormGroup, FormControl, Validators } from "@angular/forms";
 import { ReCaptchaComponent } from 'angular2-recaptcha';
 import { MainService } from "../../services/main.service";
 import { User } from "../../models/user.model";
@@ -23,8 +23,20 @@ export class HomeComponent implements OnInit {
 
   constructor(private fb: FormBuilder, public mainService: MainService) {
     this.myForm = this.fb.group({
-      frmCreditCard: ['', Validators.required],
-      frmCardCVV: ['', Validators.required],
+      frmFirstName :    [''],
+      frmLastName :     [''],
+      frmEmail :        [''],
+      frmCreditCard:    [''],
+      frmCardCVV:       [''],
+      frmCardExpYear :   [''],
+      frmCardExpMonth : [''],
+      frmAddress :      [''],
+      frmCity :         [''],
+      frmState :        [''],
+      frmZip :          [''],
+      frmCountry :      [''],
+      frmSubType :      [''],
+      googleResponse :  ['']
     });
 
     this.userFields = {
@@ -34,7 +46,7 @@ export class HomeComponent implements OnInit {
 
       frmCreditCard : '',
       frmCardCVV : '',
-      frmCardExpDay : '',
+      frmCardExpYear : '',
       frmCardExpMonth : '',
       frmAddress : '',
       frmCity : '',
@@ -61,7 +73,15 @@ export class HomeComponent implements OnInit {
   }
 
   handleUserSubscription(): void {
-    const response = this.mainService.subscribeUser(this.myForm);
+    const formData = new FormData();
+
+    formData.append('subType', 'asp');
+    formData.append('expirationDate', this.myForm.get('frmCardExpMonth')?.value + '-' + this.myForm.get('frmCardExpYear')?.value);
+    formData.append('cardNumber', this.myForm.get('frmCreditCard')?.value);
+
+
+
+    const response = this.mainService.subscribeUser(formData);
     this.handleSendToParent(response['success'], response['message']);
   }
 
