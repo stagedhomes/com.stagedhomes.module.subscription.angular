@@ -2,6 +2,7 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from "@angular/forms";
 import { ReCaptchaComponent } from 'angular2-recaptcha';
 import { MainService } from "../../services/main.service";
+import { User } from "../../models/user.model";
 
 
 @Component({
@@ -17,6 +18,7 @@ export class HomeComponent implements OnInit {
   myForm: FormGroup;
   error = false;
   errorMessage = '';
+  userFields: User;
 
 
   constructor(private fb: FormBuilder, public mainService: MainService) {
@@ -24,6 +26,26 @@ export class HomeComponent implements OnInit {
       frmCreditCard: ['', Validators.required],
       frmCardCVV: ['', Validators.required],
     });
+
+    this.userFields = {
+      frmFirstName : '',
+      frmLastName : '',
+      frmEmail : '',
+
+      frmCreditCard : '',
+      frmCardCVV : '',
+      frmCardExpDay : '',
+      frmCardExpMonth : '',
+      frmAddress : '',
+      frmCity : '',
+      frmState : '',
+      frmZip : '',
+      frmCountry : '',
+
+      frmSubType : '',
+
+      googleResponse : ''
+    };
 
   }
 
@@ -39,7 +61,7 @@ export class HomeComponent implements OnInit {
   }
 
   handleUserSubscription(): void {
-    const response = this.mainService.subscribeUser();
+    const response = this.mainService.subscribeUser(this.myForm);
     this.handleSendToParent(response['success'], response['message']);
   }
 

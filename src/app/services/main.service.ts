@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable, throwError } from 'rxjs';
 import { catchError, retry } from 'rxjs/operators';
+import { User } from "../models/user.model";
 
 @Injectable({
   providedIn: 'root'
@@ -10,21 +11,39 @@ export class MainService {
   isTesting = true;
   public footerFeedURL: string;
   public footerBlogURL: string;
+  public serverApiURL: string;
 
   constructor(private http: HttpClient) {
     if (this.isTesting === true) {
       // use localhost URL
       this.footerFeedURL = "http://localhost:8860/assets/app_standalones/footerFeeds/";
       this.footerBlogURL = "https://pages.stagedhomes.com/wp-json/wp/v2/posts?per_page=5&orderby=date";
+      this.serverApiURL = "http://localhost:9016/members/";
+
     } else {
       // use Live URL
       this.footerFeedURL = "https://stagedhomes.com/assets/app_standalones/footerFeeds/";
       this.footerBlogURL = "https://pages.stagedhomes.com/wp-json/wp/v2/posts?per_page=5&orderby=date";
+      this.serverApiURL = "http://localhost:9016/members/";
     }
 
   } // /constructor
 
-  public subscribeUser() {
+  public subscribeUser(fields: any) {
+    const payload = {
+      subType: 'asp',
+      expirationDate: '',
+      cardNumber: fields.frmCreditCard,
+      email: fields.frmEmail,
+      firstName: fields.frmFirstName,
+      lastName: fields.frmLastName,
+      address: fields.frmAddress,
+      city: fields.frmCity,
+      state: fields.frmState,
+      zip: fields.frmZip,
+      country: fields.frmCountry
+    };
+    console.log(payload);
     return {
       success: false,
       message: 'this represents a failure message returned from nodejs'
