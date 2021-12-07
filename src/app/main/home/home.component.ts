@@ -78,11 +78,19 @@ export class HomeComponent implements OnInit {
     formData.append('subType', 'asp');
     formData.append('expirationDate', this.myForm.get('frmCardExpMonth')?.value + '-' + this.myForm.get('frmCardExpYear')?.value);
     formData.append('cardNumber', this.myForm.get('frmCreditCard')?.value);
+    formData.append('email', this.myForm.get('frmEmail')?.value);
+    formData.append('firstName', this.myForm.get('frmFirstName')?.value);
+    formData.append('lastName', this.myForm.get('frmLastName')?.value);
+    formData.append('address', this.myForm.get('frmAddress')?.value);
+    formData.append('city', this.myForm.get('frmCity')?.value);
+    formData.append('state', this.myForm.get('frmState')?.value);
+    formData.append('zip', this.myForm.get('frmZip')?.value);
+    formData.append('country', this.myForm.get('frmCountry')?.value);
 
 
 
     const response = this.mainService.subscribeUser(formData);
-    this.handleSendToParent(response['success'], response['message']);
+    //this.handleSendToParent(response['success'], response['message']);
   }
 
   handleSendToParent(success: boolean, message: string): void {
