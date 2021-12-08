@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable, throwError } from 'rxjs';
 import { catchError, retry } from 'rxjs/operators';
 import { User } from "../models/user.model";
@@ -18,24 +18,34 @@ export class MainService {
       // use localhost URL
       this.footerFeedURL = "http://localhost:8860/assets/app_standalones/footerFeeds/";
       this.footerBlogURL = "https://pages.stagedhomes.com/wp-json/wp/v2/posts?per_page=5&orderby=date";
-      this.serverApiURL = "http://localhost:9016/members/";
+      this.serverApiURL = "http://localhost:9016/memberships/";
 
     } else {
       // use Live URL
       this.footerFeedURL = "https://stagedhomes.com/assets/app_standalones/footerFeeds/";
       this.footerBlogURL = "https://pages.stagedhomes.com/wp-json/wp/v2/posts?per_page=5&orderby=date";
-      this.serverApiURL = "http://localhost:9016/members/";
+      this.serverApiURL = "http://localhost:9016/memberships/";
     }
 
   } // /constructor
 
-  public subscribeUser(formData: any) {
+  public async subscribeUser(formData: any) {
+    //const strBody = JSON.stringify(formData.entries());
+    const constHeaders = new HttpHeaders().set('Content-Type', 'application/json');
+    const subURL = this.serverApiURL + 'create_subscription';
     // formData is a formdata object, so we can send that directly to the nodejs
-    console.log(...formData);
-    return {
-      success: false,
-      message: 'this represents a failure message returned from nodejs'
-    };
+    //console.log(...formData);
+
+    //iterate thru the formData to form a propper object that we can JSONify
+    let tmpObject: { [key:number]: string } = {}; 
+    formData.forEach((value: string, key: number) => {
+      tmpObject[key] = value;
+    });
+    const strBody = JSON.stringify(tmpObject);
+    console.log('strBody:');
+    console.log(strBody);
+
+    return await this.http.post(subURL, strBody, { headers: constHeaders }).toPromise();
   }
 
 

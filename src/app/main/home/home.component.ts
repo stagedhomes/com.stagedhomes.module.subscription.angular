@@ -76,7 +76,7 @@ export class HomeComponent implements OnInit {
     const formData = new FormData();
 
     formData.append('subType', 'asp');
-    formData.append('expirationDate', this.myForm.get('frmCardExpMonth')?.value + '-' + this.myForm.get('frmCardExpYear')?.value);
+    formData.append('expirationDate', this.myForm.get('frmCardExpYear')?.value + '-' + this.myForm.get('frmCardExpMonth')?.value);
     formData.append('cardNumber', this.myForm.get('frmCreditCard')?.value);
     formData.append('email', this.myForm.get('frmEmail')?.value);
     formData.append('firstName', this.myForm.get('frmFirstName')?.value);
@@ -89,7 +89,17 @@ export class HomeComponent implements OnInit {
 
 
 
-    const response = this.mainService.subscribeUser(formData);
+    this.mainService.subscribeUser(formData)
+    .then((data: any) => {
+      console.log('successful coms to nodejs');
+      console.log(data.response);
+      console.log(data.response.messages.message[0]);
+    })
+    .catch((err) => {
+      console.log('com error to nodejs');
+      console.log(err);
+    });
+
     //this.handleSendToParent(response['success'], response['message']);
   }
 
