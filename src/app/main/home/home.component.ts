@@ -93,9 +93,17 @@ export class HomeComponent implements OnInit {
     .then((data: any) => {
       console.log('successful coms to nodejs');
       console.log(data.response);
-      console.log(data.response.messages.message[0]);
+
+      if (data.response.messages.resultCode == "Ok") {
+        // transaction was successful
+        this.handleSendToParent(true, data.response);
+      } else {
+        // an error occured with the transaction
+        this.handleSendToParent(false, data.response);
+      }
     })
     .catch((err) => {
+      // an error occured with communication to the nodejs server
       console.log('com error to nodejs');
       console.log(err);
     });
@@ -107,9 +115,9 @@ export class HomeComponent implements OnInit {
     //console.log('angular: handleSendToParent has been succesfully called');
     let description = '';
     if (success) {
-      description = 'Subscription successful message';
+      description = message;
     } else {
-      description = 'Subscription failed message';
+      description = message;
     }
 
     window.parent.postMessage({
