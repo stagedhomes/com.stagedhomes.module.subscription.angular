@@ -5,6 +5,7 @@ Auto Renewal Subscriptions for Staged Homes
 ## Deployment
 1. (dev) run `ng build` or (prod) run `ng build --prod`
 2. copy contents of ,`/dist/StagedhomesSubscription/` to StagedHomes.com's `/subscription/dist` folder
+3. note: don't forget, if running from the /subscription/dist location, the base in the index file has to be set correctly.
 
 (note)
 I did it this way (copying the files) so that the files being loaded into the iframe are on the same origin as the index.php.

@@ -20,8 +20,15 @@ export class HomeComponent implements OnInit {
   errorMessage = '';
   userFields: User;
 
+  currentUserAspID = '';
+
 
   constructor(private fb: FormBuilder, public mainService: MainService) {
+    // localStorage is of type "string | null"
+    // i've never seen that before...
+    const tmpAspID:string | null = localStorage.getItem('aspid');
+    this.currentUserAspID = (tmpAspID !== null) ? tmpAspID.toString() : '';
+
     this.myForm = this.fb.group({
       frmFirstName :    [''],
       frmLastName :     [''],
@@ -75,6 +82,10 @@ export class HomeComponent implements OnInit {
   handleUserSubscription(): void {
     const formData = new FormData();
 
+    if (this.currentUserAspID != "") {
+      console.log(`successfully retrieved aspID: ${this.currentUserAspID}`)
+      formData.append('aspID', 'currentUserAspID');
+    }
     formData.append('subType', 'asp');
     formData.append('expirationDate', this.myForm.get('frmCardExpYear')?.value + '-' + this.myForm.get('frmCardExpMonth')?.value);
     formData.append('cardNumber', this.myForm.get('frmCreditCard')?.value);
