@@ -84,7 +84,7 @@ export class HomeComponent implements OnInit {
 
     if (this.currentUserAspID != "") {
       console.log(`successfully retrieved aspID: ${this.currentUserAspID}`)
-      formData.append('aspID', 'currentUserAspID');
+      formData.append('aspID', this.currentUserAspID);
     }
     formData.append('subType', 'asp');
     formData.append('expirationDate', this.myForm.get('frmCardExpYear')?.value + '-' + this.myForm.get('frmCardExpMonth')?.value);
