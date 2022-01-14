@@ -29,6 +29,17 @@ export class HomeComponent implements OnInit {
     const tmpAspID:string | null = localStorage.getItem('aspid');
     this.currentUserAspID = (tmpAspID !== null) ? tmpAspID.toString() : '';
 
+    if (this.currentUserAspID) {
+      const status = this.mainService.getSubscriptionStatus(this.currentUserAspID).then((data) => {
+        console.log(data);
+      })
+      .catch((err) => {
+        console.log('an error occured trying to get the users sub status:');
+        console.log(err);
+      })
+      ;
+    }
+
     this.myForm = this.fb.group({
       frmFirstName :    [''],
       frmLastName :     [''],
@@ -65,6 +76,7 @@ export class HomeComponent implements OnInit {
 
       googleResponse : ''
     };
+
 
   }
 

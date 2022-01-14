@@ -48,6 +48,18 @@ export class MainService {
     return await this.http.post(subURL, strBody, { headers: constHeaders }).toPromise();
   }
 
+  public async getSubscriptionStatus(aspID: string) {
+    console.log(`the sub ID to be checked: ${aspID}`);
+    const constHeaders = new HttpHeaders().set('Content-Type', 'application/json');
+    const subURL = this.serverApiURL + 'check_status_subscription/aspid';
+
+    const tmpObject = {
+    "aspId" : aspID
+    }
+    const strBody = JSON.stringify(tmpObject);
+    return await this.http.post(subURL, strBody, { headers: constHeaders }).toPromise();
+  }
+
 
   public async getFooterFeed() {
     return await this.http.get<any>(this.footerFeedURL).toPromise();
