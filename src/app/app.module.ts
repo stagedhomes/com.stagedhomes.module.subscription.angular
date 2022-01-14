@@ -12,13 +12,15 @@ import { HomeComponent } from './main/home/home.component';
 import { ReCaptchaModule } from 'angular2-recaptcha';
 
 import { MainService } from './services/main.service';
+import { CancelComponent } from './main/cancel/cancel.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     HeaderComponent,
     FooterComponent,
-    HomeComponent
+    HomeComponent,
+    CancelComponent
   ],
   imports: [
     BrowserModule,

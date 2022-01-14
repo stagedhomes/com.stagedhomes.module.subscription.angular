@@ -1,5 +1,6 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup, FormControl, Validators } from "@angular/forms";
+import { Router } from "@angular/router";
 import { ReCaptchaComponent } from 'angular2-recaptcha';
 import { MainService } from "../../services/main.service";
 import { User } from "../../models/user.model";
@@ -23,15 +24,20 @@ export class HomeComponent implements OnInit {
   currentUserAspID = '';
 
 
-  constructor(private fb: FormBuilder, public mainService: MainService) {
+  constructor(private router: Router, private fb: FormBuilder, public mainService: MainService) {
     // localStorage is of type "string | null"
     // i've never seen that before...
     const tmpAspID:string | null = localStorage.getItem('aspid');
     this.currentUserAspID = (tmpAspID !== null) ? tmpAspID.toString() : '';
 
     if (this.currentUserAspID) {
-      const status = this.mainService.getSubscriptionStatus(this.currentUserAspID).then((data) => {
+      const status = this.mainService.getSubscriptionStatus(this.currentUserAspID).then((data: any) => {
         console.log(data);
+
+        if (data.response.status === "active") {
+          // user has an active sub, so if they're visiting this page, they want to cancel
+          router.navigate(['/cancel'])
+        }
       })
       .catch((err) => {
         console.log('an error occured trying to get the users sub status:');
