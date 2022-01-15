@@ -22,9 +22,12 @@ export class HomeComponent implements OnInit {
   userFields: User;
 
   currentUserAspID = '';
+  alertText: string;
 
 
   constructor(private router: Router, private fb: FormBuilder, public mainService: MainService) {
+    // the alert text is set, if some message needs to be displayed above the reg form
+    this.alertText = '';
     // localStorage is of type "string | null"
     // i've never seen that before...
     const tmpAspID:string | null = localStorage.getItem('aspid');
@@ -35,9 +38,34 @@ export class HomeComponent implements OnInit {
         console.log(data);
 
         if (data.response.status === "active") {
-          // user has an active sub, so if they're visiting this page, they want to cancel
-          router.navigate(['/cancel'])
         }
+        let theStatus = '';
+        try {
+          theStatus = data.response.status;
+        } catch {
+          // do nothing
+        }
+        switch (theStatus.toLowerCase()) {
+          case 'active': // user has an active sub, so if they're visiting this page, they want to cancel
+            router.navigate(['/cancel'])
+            break;
+          case 'suspended': // credit card info expired, so sub is suspended
+            router.navigate(['/card-details'])
+            break;
+
+          case 'expired': // the schedule of payments has ended
+            this.alertText = 'Your schedule of payments has ended.  Please subscribe again!';
+            break;
+          case 'canceled': // the user canceled
+            this.alertText = 'You have cancelled your subscription.  Please subscribe again!';
+            break;
+          case 'terminated': // if user took no action from suspended
+            this.alertText = 'Your subscription was terminated.  Please subscribe again!';
+            break;
+          default: // user doesn't have a status, continue to sign up form
+          
+        } // /switch
+
       })
       .catch((err) => {
         console.log('an error occured trying to get the users sub status:');
