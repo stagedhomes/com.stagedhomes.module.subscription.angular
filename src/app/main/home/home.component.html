@@ -1,6 +1,11 @@
 <div class="container">
+  <div id="loading" [hidden]="loading === false">
+    <div class="spinner-holder">
+      <div class="loader">Loading...</div>
+    </div>
+  </div>
 
-  <form [formGroup]="myForm">
+  <form [formGroup]="myForm" [hidden]="loading === true">
     <div class="row">
       <div class="col-sm-6">
         <div class="form-group">

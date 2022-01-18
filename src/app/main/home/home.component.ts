@@ -23,6 +23,7 @@ export class HomeComponent implements OnInit {
 
   currentUserAspID = '';
   alertText: string;
+  loading = true;
 
 
   constructor(private router: Router, private fb: FormBuilder, public mainService: MainService) {
@@ -39,6 +40,7 @@ export class HomeComponent implements OnInit {
 
         if (data.response.status === "active") {
         }
+        this.loading = false;
         let theStatus = '';
         try {
           theStatus = data.response.status;
