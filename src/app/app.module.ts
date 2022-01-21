@@ -13,6 +13,7 @@ import { ReCaptchaModule } from 'angular2-recaptcha';
 
 import { MainService } from './services/main.service';
 import { CancelComponent } from './main/cancel/cancel.component';
+import { CardDetailsComponent } from './main/card-details/card-details.component';
 
 @NgModule({
   declarations: [
@@ -20,7 +21,8 @@ import { CancelComponent } from './main/cancel/cancel.component';
     HeaderComponent,
     FooterComponent,
     HomeComponent,
-    CancelComponent
+    CancelComponent,
+    CardDetailsComponent
   ],
   imports: [
     BrowserModule,
