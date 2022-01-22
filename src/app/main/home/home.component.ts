@@ -44,6 +44,13 @@ export class HomeComponent implements OnInit {
         let theStatus = '';
         try {
           theStatus = data.response.status;
+
+          if (
+            (localStorage.getItem("statusOverride") !== null ) &&
+            (localStorage.getItem("statusOverride") !== "" )
+          ) {
+            theStatus = `${localStorage.getItem("statusOverride")}`;
+          }
         } catch {
           // do nothing
         }
@@ -58,7 +65,7 @@ export class HomeComponent implements OnInit {
           case 'expired': // the schedule of payments has ended
             this.alertText = 'Your schedule of payments has ended.  Please subscribe again!';
             break;
-          case 'canceled': // the user canceled
+          case 'cancelled': // the user canceled
             this.alertText = 'You have cancelled your subscription.  Please subscribe again!';
             break;
           case 'terminated': // if user took no action from suspended

@@ -5,6 +5,9 @@
     </div>
   </div>
 
+  <div [hidden]="!alertText" class="alertText alert alert-danger text-center h4" role="alert">
+    {{ alertText }}
+  </div>
   <form [formGroup]="myForm" [hidden]="loading === true">
     <div class="row">
       <div class="col-sm-6">
