@@ -1,9 +1,107 @@
-<div>
-  <p>
-    We were not able to process your credit card.  Please use the form 
-    below to enter your card info in again.
-  </p>
-</div>
-<div>
-  Credit Card Form will go here.
-</div>
+<div class="container">
+  <div id="loading" [hidden]="loading === false">
+    <div class="spinner-holder">
+      <div class="loader">Loading...</div>
+    </div>
+  </div>
+
+  <div class="alertText alert alert-danger text-center h4" role="alert">
+    <p>
+      We were not able to process your credit card.  Please use the form <br />
+      below to enter your card info in again.
+    </p>
+  </div>
+  <div [hidden]="!alertText" class="alertText alert alert-danger text-center h4" role="alert">
+    {{ alertText }}
+  </div>
+  <form [formGroup]="myForm" [hidden]="loading === true">
+    <div class="row">
+      <div class="col-sm-6">
+        <div class="form-group">
+          <h3>Payment Information</h3>
+          <div class="fields-holder">
+            <div class="row">
+              <div class="col-xs-12">
+                <label for="frmCreditCard">Card Number</label>
+                <input type="text" class="form-control" id="frmCreditCard" placeholder="" formControlName="frmCreditCard" required>
+                <div class="info">
+                </div>
+              </div>
+            </div> <!-- /row -->
+            <div class="row">
+              <div class="col-xs-4">
+                <label for="frmCardExpMonth">Expiration Month</label>
+                <input type="text" class="form-control" id="frmCardExpMonth" placeholder="" formControlName="frmCardExpMonth" required>
+              </div>
+              <div class="col-xs-4">
+                <label for="frmCardExpYear">Expiration Year</label>
+                <input type="text" class="form-control" id="frmCardExpYear" placeholder="" formControlName="frmCardExpYear" required>
+              </div>
+              <div class="col-xs-4">
+                <label for="frmCardCVV">CVV</label>
+                <input type="text" class="form-control" id="frmCardCVV" placeholder="" formControlName="frmCardCVV" required>
+              </div>
+            </div> <!-- /row -->
+          </div>
+        </div>
+        <div class="form-group">
+          <h3>Billing Information</h3>
+          <div class="fields-holder">
+            <div class="row">
+              <div class="col-xs-6">
+                <label for="frmFirstName">First Name</label>
+                <input type="text" class="form-control" id="frmFirstName" placeholder="" formControlName="frmFirstName" required>
+              </div>
+              <div class="col-xs-6">
+                <label for="frmLastName">Last Name</label>
+                <input type="text" class="form-control" id="frmLastName" placeholder="" formControlName="frmLastName" required>
+              </div>
+            </div> <!-- /row -->
+            <div class="row">
+              <div class="col-xs-12">
+                <label for="frmAddress">Address</label>
+                <input type="text" class="form-control" id="frmAddress" placeholder="" formControlName="frmAddress" required>
+              </div>
+            </div> <!-- /row -->
+            <div class="row">
+              <div class="col-xs-5">
+                <label for="frmCity">City</label>
+                <input type="text" class="form-control" id="frmCity" placeholder="" formControlName="frmCity" required>
+              </div>
+              <div class="col-xs-3">
+                <label for="frmState">State</label>
+                <input type="text" class="form-control" id="frmState" placeholder="" formControlName="frmState" required>
+              </div>
+              <div class="col-xs-4">
+                <label for="frmZip">Zip</label>
+                <input type="text" class="form-control" id="frmZip" placeholder="" formControlName="frmZip" required>
+              </div>
+            </div> <!-- /row -->
+            <div class="row">
+              <div class="col-xs-6">
+                <label for="frmCountry">Country</label>
+                <input type="text" class="form-control" id="frmCountry" placeholder="" formControlName="frmCountry" required>
+              </div>
+              <div class="col-xs-6">
+                <label for="frmEmail">Email Address</label>
+                <input type="text" class="form-control" id="frmEmail" placeholder="" formControlName="frmEmail" required>
+              </div>
+            </div> <!-- /row -->
+          </div>
+        </div>
+      </div>
+      <div class="col-sm-6">
+        <div class="form-group form-footer">
+          <div class="captcha-holder">
+            <re-captcha 
+              (captchaResponse)="handleCaptchaResponse($event)" 
+              (captchaExpired)="handleCaptchaExpired()"
+              site_key="xxx"
+              ></re-captcha>
+          </div>
+          <button class="btn btn-default" type="button" (click)="handleUserSubscription()" [disabled]="!myForm.valid">Confirm</button>
+        </div>
+      </div>
+    </div> <!-- /row -->
+  </form>
+</div><!-- /container -->
