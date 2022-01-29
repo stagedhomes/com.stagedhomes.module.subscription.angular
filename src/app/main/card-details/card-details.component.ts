@@ -27,7 +27,6 @@ export class CardDetailsComponent implements OnInit {
 
 
   constructor(private router: Router, private fb: FormBuilder, public mainService: MainService) {
-    this.loading = false;
     // the alert text is set, if some message needs to be displayed above the reg form
     this.alertText = '';
     // localStorage is of type "string | null"
@@ -76,6 +75,7 @@ export class CardDetailsComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.popuplateInitialFormDetails();
   }
 
   handleCaptchaResponse(strResponse: string): void {
@@ -84,6 +84,35 @@ export class CardDetailsComponent implements OnInit {
 
   handleCaptchaExpired(): void {
     console.log('captcha expired');
+  }
+
+  popuplateInitialFormDetails(): void {
+    const aspID = this.currentUserAspID;
+    if (aspID != "") {
+      this.mainService.getSubscription(aspID)
+        .then((subData: any) => {
+          console.log('current subData');
+          console.log(subData.response.subscription.profile.paymentProfile.billTo);
+          const billingInfo = subData.response.subscription.profile.paymentProfile.billTo;
+
+          this.myForm = this.fb.group({
+            frmFirstName :    [billingInfo.firstName],
+            frmLastName :     [billingInfo.lastName],
+            frmAddress :      [billingInfo.address],
+            frmCity :         [billingInfo.city],
+            frmState :        [billingInfo.state],
+            frmZip :          [billingInfo.zip],
+            frmCountry :      [billingInfo.country]
+          });
+          this.loading = false;
+
+        })
+        .catch((err) => {
+          this.alertText = `an error occured while trying to retreive existing user sub data: ${err}`;
+          console.log(this.alertText);
+        })
+      ; // /getSubscription
+    }
   }
 
   handleUserSubscription(): void {
