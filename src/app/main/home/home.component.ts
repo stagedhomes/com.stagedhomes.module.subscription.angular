@@ -1,7 +1,7 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup, FormControl, Validators } from "@angular/forms";
 import { Router } from "@angular/router";
-import { ReCaptchaComponent } from 'angular2-recaptcha';
+//import { ReCaptchaComponent } from 'angular2-recaptcha';
 import { MainService } from "../../services/main.service";
 import { User } from "../../models/user.model";
 
@@ -14,7 +14,7 @@ import { User } from "../../models/user.model";
 export class HomeComponent implements OnInit {
   // note the question mark '?' makes the captcha variable optional,
   // to omit compilation warnings of us not assigning anything to it
-  @ViewChild(ReCaptchaComponent) captcha?: ReCaptchaComponent;
+  //@ViewChild(ReCaptchaComponent) captcha?: ReCaptchaComponent;
 
   myForm: FormGroup;
   error = false;

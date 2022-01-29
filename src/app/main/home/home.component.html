@@ -108,11 +108,12 @@
         </div>
         <div class="form-group form-footer">
           <div class="captcha-holder">
-            <re-captcha 
-              (captchaResponse)="handleCaptchaResponse($event)" 
-              (captchaExpired)="handleCaptchaExpired()"
-              site_key="xxx"
-              ></re-captcha>
+            re-captcha goes here.
+            <!--<re-captcha -->
+              <!--(captchaResponse)="handleCaptchaResponse($event)" -->
+              <!--(captchaExpired)="handleCaptchaExpired()"-->
+              <!--site_key="xxx"-->
+              <!--></re-captcha>-->
           </div>
           <button class="btn btn-default" type="button" (click)="handleUserSubscription()">Test</button>
           <button class="btn btn-default" type="button" [disabled]="!myForm.valid">Confirm</button>

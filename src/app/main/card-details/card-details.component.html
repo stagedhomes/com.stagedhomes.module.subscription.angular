@@ -94,13 +94,14 @@
       <div class="col-sm-6">
         <div class="form-group form-footer">
           <div class="captcha-holder">
-            <re-captcha 
+            recaptcha goes here
+            <!-- <re-captcha 
               (captchaResponse)="handleCaptchaResponse($event)" 
               (captchaExpired)="handleCaptchaExpired()"
-              site_key="xxx"
-              ></re-captcha>
+              site_key="xyz"
+              ></re-captcha> -->
           </div>
-          <button class="btn btn-default" type="button" (click)="handleUserSubscription()" [disabled]="!myForm.valid">Confirm</button>
+          <button class="btn btn-default" type="button" (click)="handleUserSubscriptionUpdate()" [disabled]="!myForm.valid">Confirm</button>
         </div>
       </div>
     </div> <!-- /row -->

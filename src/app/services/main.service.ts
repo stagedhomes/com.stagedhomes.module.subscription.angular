@@ -48,6 +48,24 @@ export class MainService {
     return await this.http.post(subURL, strBody, { headers: constHeaders }).toPromise();
   }
 
+  public async updateSub(formData: any) {
+    const constHeaders = new HttpHeaders().set('Content-Type', 'application/json');
+    const subURL = this.serverApiURL + 'update_subscription';
+    // formData is a formdata object, so we can send that directly to the nodejs
+    //console.log(...formData);
+
+    //iterate thru the formData to form a propper object that we can JSONify
+    let tmpObject: { [key:number]: string } = {}; 
+    formData.forEach((value: string, key: number) => {
+      tmpObject[key] = value;
+    });
+    const strBody = JSON.stringify(tmpObject);
+    console.log('strBody:');
+    console.log(strBody);
+
+    return await this.http.post(subURL, strBody, { headers: constHeaders }).toPromise();
+  }
+
   public async getSubscriptionStatus(aspID: string) {
     console.log(`the sub ID to be checked: ${aspID}`);
     const constHeaders = new HttpHeaders().set('Content-Type', 'application/json');
