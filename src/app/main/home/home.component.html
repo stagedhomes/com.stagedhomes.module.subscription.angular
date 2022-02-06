@@ -115,8 +115,7 @@
               <!--site_key="xxx"-->
               <!--></re-captcha>-->
           </div>
-          <button class="btn btn-default" type="button" (click)="handleUserSubscription()">Test</button>
-          <button class="btn btn-default" type="button" [disabled]="!myForm.valid">Confirm</button>
+          <button class="btn btn-default" type="button" [disabled]="!myForm.valid" (click)="handleUserSubscription()">Confirm</button>
         </div>
       </div>
     </div> <!-- /row -->
